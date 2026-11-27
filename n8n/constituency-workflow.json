@@ -1,0 +1,107 @@
+{
+  "name": "Know Your Constituency (One-Click)",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        300
+      ],
+      "id": "manual-id"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "constituency-agent",
+        "options": {}
+      },
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        0,
+        150
+      ],
+      "id": "webhook-id"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3006/api/ask",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"query\": \"{{ $json.body?.query || $json.query || 'Provide a daily update for residents' }}\"\n}",
+        "options": {}
+      },
+      "name": "Get AI Insight",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        250,
+        300
+      ],
+      "id": "get-insight-id"
+    },
+    {
+      "parameters": {
+        "url": "=http://api.textmebot.com/send.php?recipient=919380365439&apikey=8dN8Eaco11N8&text={{ encodeURIComponent($json.data.whatsappMessage) }}&json=yes",
+        "method": "GET",
+        "options": {}
+      },
+      "name": "Send WhatsApp Insight",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        500,
+        300
+      ],
+      "id": "send-wa-id"
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get AI Insight",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get AI Insight",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get AI Insight": {
+      "main": [
+        [
+          {
+            "node": "Send WhatsApp Insight",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "id": "10",
+  "meta": {
+    "instanceId": "local"
+  }
+}

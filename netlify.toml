@@ -1,0 +1,5 @@
+[build]
+  publish = "public"
+
+# The frontend is static and talks to the Render backend via window.__API_BASE__
+# (see public/config.js). No build step is required.

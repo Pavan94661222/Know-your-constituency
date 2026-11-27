@@ -1,0 +1,19 @@
+# Render Blueprint — deploys the Express backend (API + Gemini constituency insight)
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: know-your-constituency
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      # Secrets — set these in the Render dashboard (not committed).
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: TEXTMEBOT_API_KEY
+        sync: false
+      - key: WHATSAPP_PHONE
+        sync: false
+      - key: NODE_VERSION
+        value: "24"

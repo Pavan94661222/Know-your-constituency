@@ -1,0 +1,32 @@
+{
+  "constituency": "Rajarajeshwarinagar",
+  "city": "Bengaluru",
+  "state": "Karnataka",
+  "mla": "Munirathna",
+  "wards": [
+    "Rajarajeshwari Nagar",
+    "Jnanabharathi",
+    "Kottegepalya",
+    "Laggere",
+    "Lakshmidevi Nagar",
+    "Yeshwanthpur"
+  ],
+  "landmarks": [
+    "RR Nagar Arch",
+    "Omkar Hills",
+    "BEML Layout",
+    "Global Village Tech Park",
+    "Ideal Homes Layout"
+  ],
+  "population_est": "4.5 Lakhs",
+  "key_issues": [
+    "Traffic congestion at RR Nagar Arch",
+    "Solid waste management in Laggere",
+    "Water supply consistency in newly added layouts"
+  ],
+  "helpline_numbers": {
+    "BBMP RR Nagar": "080-28601050",
+    "Police Station": "080-22942521",
+    "Bescom": "1912"
+  }
+}
